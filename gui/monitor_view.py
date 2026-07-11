@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # gui/monitor_view.py — Surveillance réseau en temps réel
 # NetSentinel — Surveillance réseau et défense automatisée

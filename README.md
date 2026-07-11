@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # 🛡️ NetSentinel
 
 **Outil de surveillance réseau et de défense automatisée pour PME africaines sans SOC.**

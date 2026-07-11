@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # sniffer.py — Capture réseau en temps réel (Scapy)
 # NetSentinel — Surveillance réseau et défense automatisée

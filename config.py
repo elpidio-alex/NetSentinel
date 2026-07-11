@@ -1,3 +1,9 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
 # =============================================================
 # config.py — Chargement de la configuration NetSentinel
 # Outil de surveillance réseau et défense automatisée

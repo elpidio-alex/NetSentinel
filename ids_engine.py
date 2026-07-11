@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # ids_engine.py — Moteur de détection d'intrusion (règles)
 # NetSentinel — Surveillance réseau et défense automatisée

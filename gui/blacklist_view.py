@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # gui/blacklist_view.py — Gestion de la liste noire et whitelist
 # NetSentinel — Surveillance réseau et défense automatisée

@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # defense.py — Blocage IP, coupure TCP et gestion whitelist
 # NetSentinel — Surveillance réseau et défense automatisée

@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # gui/profile_view.py — Vue profil utilisateur
 # NetSentinel — Surveillance réseau et défense automatisée

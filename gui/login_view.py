@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # gui/login_view.py — Écran de connexion / inscription
 # NetSentinel — Surveillance réseau et défense automatisée

@@ -1,22 +1,32 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
-# requirements.txt — Dépendances NetSentinel
+# requirements.txt — Dépendances Python NetSentinel
 # Outil de surveillance réseau et défense automatisée
 # =============================================================
+# Installation :
+#   pip install -r requirements.txt
+# =============================================================
 
-# ── Interface graphique ─────────────────────────────────────
-# Tkinter est inclus nativement avec Python (aucune installation requise)
+# ── Interface graphique ───────────────────────────────────────
+# Tkinter est inclus nativement avec Python — pas à installer
 
-# ── Capture et analyse réseau ───────────────────────────────
-scapy==2.6.1
+# ── Traitement des images (logo, icône) ──────────────────────
+Pillow>=10.0.0
 
-# ── Base de données ─────────────────────────────────────────
-mysql-connector-python==9.1.0
+# ── Capture réseau ───────────────────────────────────────────
+scapy>=2.5.0
 
-# ── Sécurité / hachage mots de passe ────────────────────────
-bcrypt==4.2.1
+# ── Base de données MySQL ─────────────────────────────────────
+mysql-connector-python>=8.3.0
 
-# ── Gestion configuration / variables d'environnement ───────
-python-dotenv==1.0.1
+# ── Hachage des mots de passe ─────────────────────────────────
+bcrypt>=4.1.0
 
-# ── Utilitaires système (Windows) ───────────────────────────
-psutil==6.1.0
+# ── Chargement des variables d'environnement (.env) ──────────
+python-dotenv>=1.0.0

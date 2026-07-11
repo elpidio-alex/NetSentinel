@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # gui/alerts_view.py — Alertes de sécurité détectées
 # NetSentinel — Surveillance réseau et défense automatisée

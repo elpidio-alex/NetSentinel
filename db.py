@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # db.py — Connexion et opérations base de données NetSentinel
 # Outil de surveillance réseau et défense automatisée

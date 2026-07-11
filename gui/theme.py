@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # theme.py — Gestion centralisée des thèmes (clair / sombre)
 # NetSentinel — Surveillance réseau et défense automatisée

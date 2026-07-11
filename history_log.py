@@ -1,3 +1,10 @@
+"""
+Date : 11/07/2026
+Auteur : Elpidio Alexis AMOUSSOU
+Email : amoussouelpidioalexis@gmail.com
+
+"""
+
 # =============================================================
 # history_log.py — Journalisation centralisée (table history_log)
 # NetSentinel — Surveillance réseau et défense automatisée
