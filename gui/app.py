@@ -32,6 +32,10 @@ class App:
 
     def __init__(self):
         self.root = tk.Tk()
+        try:
+            self.root.iconbitmap("assets/netsentinel.ico")
+        except Exception:
+            pass
         self.root.title("NetSentinel — Surveillance réseau et défense automatisée")
         self.root.geometry(f"{self.LARGEUR_FENETRE}x{self.HAUTEUR_FENETRE}")
         self.root.minsize(900, 550)

@@ -71,8 +71,9 @@ python main.py
 ---
 
 ## 🗂️ Structure du projet
+
+```
 netsentinel/
-│
 ├── main.py                  # Point d'entrée
 ├── config.py                # Chargement de la configuration (.env)
 ├── db.py                    # Couche d'accès base de données
@@ -99,6 +100,7 @@ netsentinel/
 ├── .env.example             # Template de configuration
 ├── .env                     # ⚠️ Non versionné (données sensibles)
 └── README.md
+```
 
 ---
 
@@ -173,4 +175,4 @@ Superviseurs : M. SHABAN
 
 ## 📄 Licence
 
-Projet académique — tous droits réservés © 2025 Elpidio Alexis AMOUSSOU.
+Projet académique — tous droits réservés © 2026 Elpidio Alexis AMOUSSOU.

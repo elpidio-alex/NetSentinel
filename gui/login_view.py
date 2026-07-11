@@ -2,17 +2,18 @@
 # gui/login_view.py — Écran de connexion / inscription
 # NetSentinel — Surveillance réseau et défense automatisée
 # =============================================================
-# Cette vue gère la connexion et l'inscription des utilisateurs.
-# Elle utilise auth.py pour la logique métier et theme.py pour
-# le style (couleurs, police), sans jamais coder les couleurs
-# en dur ici.
-# =============================================================
 
 import tkinter as tk
 from tkinter import messagebox
 
 from gui import theme
 from auth import connecter_utilisateur, inscrire_utilisateur
+
+try:
+    from PIL import Image, ImageTk
+    PIL_DISPONIBLE = True
+except ImportError:
+    PIL_DISPONIBLE = False
 
 
 class LoginView(tk.Frame):
@@ -25,15 +26,10 @@ class LoginView(tk.Frame):
     """
 
     def __init__(self, parent, on_connexion_reussie):
-        """
-        Paramètres :
-            parent : conteneur Tkinter parent
-            on_connexion_reussie (callable) : fonction appelée avec
-                le dict utilisateur en paramètre après connexion réussie
-        """
         super().__init__(parent)
         self.on_connexion_reussie = on_connexion_reussie
         self.mode_inscription = False
+        self._photo_logo = None
 
         self._construire_interface()
         self.appliquer_theme()
@@ -42,44 +38,76 @@ class LoginView(tk.Frame):
     # Construction de l'interface
     # ─────────────────────────────────────────────────────────
     def _construire_interface(self):
+        # ── Bouton bascule thème (haut à droite) ─────────────
+        self.bouton_theme = tk.Button(
+            self, text="🌙", command=self._basculer_theme,
+            relief="flat", cursor="hand2", bd=0
+        )
+        self.bouton_theme.place(relx=1.0, rely=0.0, x=-15, y=15, anchor="ne")
+
+        # ── Conteneur principal centré ────────────────────────
         self.conteneur_central = tk.Frame(self)
         self.conteneur_central.place(relx=0.5, rely=0.5, anchor="center")
 
-        # ── Titre / logo ─────────────────────────────────────
-        self.label_titre = tk.Label(self.conteneur_central, text="NetSentinel")
-        self.label_titre.pack(pady=(0, 5))
+        # ── Bloc logo + titre côte à côte ─────────────────────
+        self.zone_logo = tk.Frame(self.conteneur_central)
+        self.zone_logo.pack(pady=(0, 30))
+
+        # Logo à gauche (image PNG ou emoji de secours)
+        if PIL_DISPONIBLE:
+            try:
+                img = Image.open("assets/logo.png").convert("RGBA")
+                img = img.resize((80, 80), Image.LANCZOS)
+                self._photo_logo = ImageTk.PhotoImage(img)
+                self.label_logo_img = tk.Label(self.zone_logo, image=self._photo_logo)
+            except Exception:
+                self.label_logo_img = tk.Label(self.zone_logo, text="🛡️",
+                                                font=("Times New Roman", 42))
+        else:
+            self.label_logo_img = tk.Label(self.zone_logo, text="🛡️",
+                                            font=("Times New Roman", 42))
+
+        self.label_logo_img.pack(side="left", padx=(0, 18))
+
+        # Titre + sous-titre à droite du logo
+        self.zone_titre = tk.Frame(self.zone_logo)
+        self.zone_titre.pack(side="left")
+
+        self.label_titre = tk.Label(self.zone_titre, text="NetSentinel")
+        self.label_titre.pack(anchor="w")
 
         self.label_sous_titre = tk.Label(
-            self.conteneur_central,
-            text="Surveillance réseau et défense automatisée"
+            self.zone_titre,
+            text="Surveillance réseau\net défense automatisée",
+            justify="left"
         )
-        self.label_sous_titre.pack(pady=(0, 25))
+        self.label_sous_titre.pack(anchor="w", pady=(4, 0))
 
-        # ── Champ username ───────────────────────────────────
+        # ── Champ username ────────────────────────────────────
         self.label_username = tk.Label(self.conteneur_central, text="Nom d'utilisateur")
         self.label_username.pack(anchor="w")
         self.entree_username = tk.Entry(self.conteneur_central, width=32)
-        self.entree_username.pack(pady=(0, 12))
+        self.entree_username.pack(pady=(2, 12))
 
         # ── Champ email (visible uniquement en mode inscription) ──
         self.label_email = tk.Label(self.conteneur_central, text="Email")
         self.entree_email = tk.Entry(self.conteneur_central, width=32)
 
-        # ── Champ mot de passe ───────────────────────────────
+        # ── Champ mot de passe ────────────────────────────────
         self.label_mdp = tk.Label(self.conteneur_central, text="Mot de passe")
         self.label_mdp.pack(anchor="w")
         self.entree_mdp = tk.Entry(self.conteneur_central, width=32, show="•")
-        self.entree_mdp.pack(pady=(0, 20))
+        self.entree_mdp.pack(pady=(2, 22))
         self.entree_mdp.bind("<Return>", lambda e: self._soumettre())
 
-        # ── Bouton principal (Connexion / Créer un compte) ──
+        # ── Bouton principal ──────────────────────────────────
         self.bouton_principal = tk.Button(
             self.conteneur_central, text="Se connecter",
             command=self._soumettre, width=26, relief="flat", cursor="hand2"
         )
         self.bouton_principal.pack(pady=(0, 10))
 
-        # ── Lien de bascule (vers inscription / connexion) ──
+        # ── Lien de bascule ───────────────────────────────────
         self.lien_bascule = tk.Label(
             self.conteneur_central,
             text="Pas encore de compte ? Créer un compte",
@@ -87,13 +115,6 @@ class LoginView(tk.Frame):
         )
         self.lien_bascule.pack()
         self.lien_bascule.bind("<Button-1>", lambda e: self._basculer_mode())
-
-        # ── Bouton bascule thème (haut à droite) ─────────────
-        self.bouton_theme = tk.Button(
-            self, text="🌙", command=self._basculer_theme,
-            relief="flat", cursor="hand2", bd=0
-        )
-        self.bouton_theme.place(relx=1.0, rely=0.0, x=-15, y=15, anchor="ne")
 
     # ─────────────────────────────────────────────────────────
     # Bascule connexion / inscription
@@ -103,7 +124,7 @@ class LoginView(tk.Frame):
 
         if self.mode_inscription:
             self.label_email.pack(anchor="w", before=self.label_mdp)
-            self.entree_email.pack(pady=(0, 12), before=self.label_mdp)
+            self.entree_email.pack(pady=(2, 12), before=self.label_mdp)
             self.bouton_principal.config(text="Créer un compte")
             self.lien_bascule.config(text="Déjà un compte ? Se connecter")
         else:
@@ -144,15 +165,13 @@ class LoginView(tk.Frame):
         self.appliquer_theme()
 
     def appliquer_theme(self):
-        """
-        Applique les couleurs et polices actuelles à tous les
-        widgets de cette vue. Appelée à la construction et à
-        chaque bascule de thème.
-        """
         couleurs = theme.get_colors()
 
         self.config(bg=couleurs["fond"])
         self.conteneur_central.config(bg=couleurs["fond"])
+        self.zone_logo.config(bg=couleurs["fond"])
+        self.zone_titre.config(bg=couleurs["fond"])
+        self.label_logo_img.config(bg=couleurs["fond"])
 
         self.label_titre.config(
             bg=couleurs["fond"], fg=couleurs["emeraude"],
@@ -164,19 +183,24 @@ class LoginView(tk.Frame):
         )
 
         for label in (self.label_username, self.label_email, self.label_mdp):
-            label.config(bg=couleurs["fond"], fg=couleurs["texte"], font=theme.get_font("texte"))
+            label.config(
+                bg=couleurs["fond"], fg=couleurs["texte"],
+                font=theme.get_font("texte")
+            )
 
         for entree in (self.entree_username, self.entree_email, self.entree_mdp):
             entree.config(
                 bg=couleurs["fond_carte"], fg=couleurs["texte"],
                 insertbackground=couleurs["texte"], relief="flat",
                 font=theme.get_font("texte"), highlightthickness=1,
-                highlightbackground=couleurs["bordure"], highlightcolor=couleurs["emeraude"]
+                highlightbackground=couleurs["bordure"],
+                highlightcolor=couleurs["emeraude"]
             )
 
         self.bouton_principal.config(
             bg=couleurs["emeraude"], fg="#FFFFFF",
-            activebackground=couleurs["emeraude"], font=theme.get_font("bouton")
+            activebackground=couleurs["emeraude"],
+            font=theme.get_font("bouton")
         )
 
         self.lien_bascule.config(
@@ -186,7 +210,8 @@ class LoginView(tk.Frame):
 
         self.bouton_theme.config(
             bg=couleurs["fond"], fg=couleurs["texte"],
-            activebackground=couleurs["fond"], font=theme.get_font("texte")
+            activebackground=couleurs["fond"],
+            font=theme.get_font("texte")
         )
 
         icone_theme = "🌙" if theme.get_current_mode() == "clair" else "☀️"
@@ -194,7 +219,6 @@ class LoginView(tk.Frame):
 
 
 if __name__ == "__main__":
-    # Test manuel : python -m gui.login_view
     def on_connexion(utilisateur):
         print("Connecté :", utilisateur)
         root.quit()
