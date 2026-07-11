@@ -1,0 +1,62 @@
+# =============================================================
+# .gitignore — NetSentinel
+# =============================================================
+
+# ── Variables d'environnement (NE JAMAIS COMMITTER) ──────────
+.env
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+wheels/
+
+# ── Environnements virtuels ───────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env.bak
+
+# ── IDEs ─────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ── Logs et fichiers temporaires ─────────────────────────────
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# ── Système ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Exports générés par l'application ────────────────────────
+exports/
+reports/
+*.pdf
+*.xlsx
+
+# ── Assets locaux (logos générés, captures d'écran) ──────────
+assets/logo_local.*
+screenshots/

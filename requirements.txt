@@ -1,0 +1,22 @@
+# =============================================================
+# requirements.txt — Dépendances NetSentinel
+# Outil de surveillance réseau et défense automatisée
+# =============================================================
+
+# ── Interface graphique ─────────────────────────────────────
+# Tkinter est inclus nativement avec Python (aucune installation requise)
+
+# ── Capture et analyse réseau ───────────────────────────────
+scapy==2.6.1
+
+# ── Base de données ─────────────────────────────────────────
+mysql-connector-python==9.1.0
+
+# ── Sécurité / hachage mots de passe ────────────────────────
+bcrypt==4.2.1
+
+# ── Gestion configuration / variables d'environnement ───────
+python-dotenv==1.0.1
+
+# ── Utilitaires système (Windows) ───────────────────────────
+psutil==6.1.0

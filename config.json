@@ -1,0 +1,49 @@
+{
+    "app": {
+        "nom": "NetSentinel",
+        "version": "1.0.0",
+        "theme_defaut": "clair"
+    },
+
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "nom": "netsentinel_db",
+        "utilisateur": "root",
+        "mot_de_passe": ""
+    },
+
+    "surveillance": {
+        "interface_reseau": "auto",
+        "mode_defaut": "passif",
+        "seuil_scan_ports": 15,
+        "fenetre_temps_scan_secondes": 10,
+        "seuil_brute_force": 5,
+        "fenetre_temps_brute_force_secondes": 60,
+        "seuil_exfiltration_mo": 50
+    },
+
+    "defense": {
+        "mode_defaut": "passif",
+        "duree_blocage_minutes": 5,
+        "blocage_permanent_autorise": false,
+        "confirmation_requise_mode_actif": true,
+        "whitelist_automatique": [
+            "127.0.0.1",
+            "ip_locale_auto",
+            "passerelle_par_defaut_auto",
+            "ip_mysql_local"
+        ]
+    },
+
+    "alertes": {
+        "notification_sonore": true,
+        "notification_popup_critique": true
+    },
+
+    "logs": {
+        "chemin_fichier": "logs/netsentinel.log",
+        "niveau": "INFO",
+        "rotation_jours": 30
+    }
+}
